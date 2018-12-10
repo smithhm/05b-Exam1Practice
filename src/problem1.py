@@ -380,12 +380,12 @@ def problem1c(n):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 to 20 minutes.
     # -------------------------------------------------------------------------
-    count = 0
+    count = 1
     for k in range(n + 1):
         if k >= 2:
-            count = count + sum_of_digits(is_prime(k))
-            print(count)
-    return count
+            if is_prime(k) is True:
+                count = count * k
+    return sum_of_digits(count)
 
 ###############################################################################
 # Our tests use the following to print error messages in red.

@@ -242,7 +242,7 @@ def problem3b(m, point1):
     for k in range(m):
         problem3a(window, rg.Point(point1.x, point1.y + (60 * k)), 3 + (k*2))
     window.close_on_mouse_click()
-    return problem3a()
+    return thickness?
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
