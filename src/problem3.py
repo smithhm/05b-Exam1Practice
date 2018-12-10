@@ -109,7 +109,7 @@ def run_test_problem3a():
 
     # Test 5 (it is on window 4):
     point = rg.Point(10, 10)
-    expected = 15
+    expected = 25
     answer = problem3a(window4, point, 5)
     print()
     print('Test 5 expected:', expected)
@@ -159,16 +159,26 @@ def problem3a(window, point, n):
     #    TIME ESTIMATE:   20 to 35 minutes.
     # -------------------------------------------------------------------------
     total = 1
-    line = rg.Line(point, rg.Point(point.x, point.y + 50))
-    line.thickness = 5
+    a = 1
+    end = rg.Point(point.x, point.y + 50)
+    line = rg.Line(point, end)
+    line.thickness = 1
     line.attach_to(window)
+
     for k in range(n-1):
-        total = total + 1
-        point = rg.Point(point.x + (20 * (k+1)), point.y + (10 * (k+1)))
-        line2 = rg.Line(point, rg.Point(point.x, point.y + 50))
-        line2.thickness = total
+        if k >= 5:
+            a = 13
+        else:
+            a = a + 2
+        point1 = rg.Point(point.x + 20 * (k + 1), point.y + 10 * (k + 1))
+        point2 = rg.Point(point1.x, point1.y + 50)
+
+        line2 = rg.Line(point1, point2)
+        line2.thickness = a
         line2.attach_to(window)
-    window.render()
+
+        window.render()
+        total = total + a
     return total
 
 def run_test_problem3b():
@@ -239,10 +249,15 @@ def problem3b(m, point1):
     #    TIME ESTIMATE:   20 to 30 minutes.
     # -------------------------------------------------------------------------
     window = rg.RoseWindow(400, 650)
+    total = 0
     for k in range(m):
-        problem3a(window, rg.Point(point1.x, point1.y + (60 * k)), 3 + (k*2))
+        point_ = rg.Point(point1.x, point1.y + 60 * (k + 1))
+        val = 3 + (k * 2)
+        numbsum = problem3a(window, point_, val)
+        total = total + numbsum
     window.close_on_mouse_click()
-    return thickness?
+    return total
+
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
